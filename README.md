@@ -42,9 +42,12 @@ The sample workbook has a header row; it does not trigger the missing-field chec
 
 ## Screenshots
 
-![Completed Power Automate Desktop workflow](Screenshots/Completed%20workflow.png)
+### Completed Workflow
+![Completed Power Automate workflow](Completed%20workflow.png)
 
-![Generated data quality report](Screenshots/Generate%20Report.png)
+### Generated Report
+![Automated data quality report](Generate%20Report.png)
+
 
 ## Running the workflow
 
