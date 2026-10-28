@@ -1,0 +1,27 @@
+Excel.LaunchExcel.LaunchAndOpenUnderExistingProcess Path: $'''C:\\Users\\YourUsername\\Downloads\\Data_Quality_Monitor_Sample.xlsx''' Visible: True ReadOnly: False UseMachineLocale: False Instance=> ExcelInstance
+Excel.ReadFromExcel.ReadAllCells Instance: ExcelInstance GetCellContentsMode: Excel.GetCellContentsMode.TypedValues FirstLineIsHeader: False RangeValue=> ExcelData
+SET MissingOwnerCount TO 0
+Variables.CreateNewList List=> MissingOwnerIDs
+SET MissingDepartmentCount TO 0
+Variables.CreateNewList List=> MissingDepartmentIDs
+LOOP FOREACH CurrentItem IN ExcelData
+    IF IsEmpty(CurrentItem[2]) THEN
+        Variables.IncreaseVariable Value: MissingOwnerCount IncrementValue: 1
+        Variables.AddItemToList Item: CurrentItem[0] List: MissingOwnerIDs
+    END
+    IF IsEmpty(CurrentItem[1]) THEN
+        Variables.IncreaseVariable Value: MissingDepartmentCount IncrementValue: 1
+        Variables.AddItemToList Item: CurrentItem[0] List: MissingDepartmentIDs
+    END
+END
+SET DataQualityReport TO $'''AUTOMATED DATA QUALITY REPORT
+
+Missing Assigned Owners: %MissingOwnerCount%
+Missing Departments: %MissingDepartmentCount%
+
+Records Missing Assigned Owners:
+%MissingOwnerIDs%
+
+Records Missing Departments:
+%MissingDepartmentIDs%'''
+File.WriteText File: $'''C:\\Users\\YourUsername\\Downloads\\Data_Quality_Report.txt''' TextToWrite: DataQualityReport AppendNewLine: False IfFileExists: File.IfFileExists.Overwrite Encoding: File.FileEncoding.UTF8

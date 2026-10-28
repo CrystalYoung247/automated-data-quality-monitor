@@ -1,0 +1,14 @@
+﻿AUTOMATED DATA QUALITY REPORT
+
+Missing Assigned Owners: 3
+Missing Departments: 2
+
+Records Missing Assigned Owners:
+BR-1002
+BR-1006
+BR-1012
+
+
+Records Missing Departments:
+BR-1003
+BR-1008
