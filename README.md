@@ -1,6 +1,8 @@
 # Automated Data Quality Monitor
 
-A small, practical **Microsoft Power Automate Desktop** project that checks an Excel dataset for missing ownership and department information and produces a text-based exception report.
+An Excel data validation and reporting solution built with Microsoft Power Automate Desktop to identify incomplete business records, track data-quality issues, and automatically generate exception reports.
+
+The workflow helps improve data accuracy, record accountability, and operational visibility by identifying missing information that may otherwise delay business processes.
 
 ## Business problem
 
@@ -16,6 +18,8 @@ This desktop flow:
 4. Checks whether **Assigned Owner** (column 3) or **Department** (column 2) is empty.
 5. Counts each issue and records its **Record ID**.
 6. Generates a summary report and writes it to a UTF-8 text file, overwriting the previous output on each run.
+
+Both validation checks run within the same loop, allowing the automation to identify separate data-quality issues while processing the worksheet in a single pass.   
 
 The sample workbook has a header row; it does not trigger the missing-field checks because the header cells are populated. The flow does **not** explicitly skip headers, so this is a limitation if the input format changes.
 
